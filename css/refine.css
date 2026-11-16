@@ -1,0 +1,369 @@
+/* =====================================================================
+   LIGHTHOUSE — REFINEMENTS (loaded last on every page)
+   Covers the "Lighthouse Modify" change list. Everything here intentionally
+   overrides older rules, so it is kept in one place.
+   ===================================================================== */
+
+/* ---------- 1. One typeface, rendered the same on every PC ---------- */
+:root{
+  --lh-font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --lh-dot-blue:#35d7ff; --lh-dot-green:#2ff08d;
+}
+html,body,button,input,textarea,select,h1,h2,h3,h4,h5,h6{font-family:var(--lh-font)}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;font-synthesis:none}
+
+/* ---------- 2. Navbar: bigger logo + title, stronger links ---------- */
+.shared-navbar{min-height:92px;padding-block:10px}
+.shared-brand-logo{width:clamp(48px,4.4vw,66px);height:clamp(58px,5.4vw,80px)}
+.shared-brand-subtitle{width:clamp(135px,15vw,205px);max-height:46px}
+.shared-navbar .nav-links a{font-size:15.5px;font-weight:600;color:#c9d8e6;letter-spacing:.005em}
+.shared-navbar .nav-links a:hover{color:#fff}
+.shared-navbar .nav-links a.active{color:#e4f9ff!important}
+.shared-navbar .nav-button{font-size:14px;font-weight:700;padding:12px 22px!important}
+.shared-navbar .nav-button i{font-size:11px;margin-left:6px}
+@media(max-width:900px){.shared-navbar{min-height:76px}}
+@media(max-width:560px){
+  .shared-brand-logo{width:38px;height:48px}
+  .shared-brand-subtitle{width:112px;max-height:32px}
+}
+@media(max-width:360px){.shared-brand-subtitle{width:92px}}
+
+/* ---------- 3. Home hero: small text no longer looks thin ---------- */
+.hero-meta-pills span{font-size:13px;font-weight:700;color:#d8f3ff}
+.hero-description{color:#bccadb;font-weight:500}
+.hero-content h3{font-weight:800}
+.hero .btn,.pricing-buttons .btn,.projects-heading-actions .btn{min-height:50px;padding:0 24px;font-size:14px;font-weight:700;letter-spacing:.01em;border-radius:999px;gap:10px}
+.hero .btn-outline,.btn-outline{color:#f2f9ff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.04)}
+.btn i{font-size:12px}
+.hero-caption{font-size:14px;font-weight:600;color:#b4c5d6}
+.visual-label{font-size:13px;font-weight:700;color:#c7d5e2;letter-spacing:.18em}
+.hero-bottom{font-size:13px;font-weight:700;color:#b2c2d2}
+.hero-bottom span{font-weight:700}
+
+/* ---------- 4. Bullet-point labels (green / blue dot, like the lab pills) ---------- */
+.eyebrow,.section-label,.why-showcase-label,.tech-small-label,.tech-selector-kicker,.tech-panel-intro>span{
+  display:inline-flex;align-items:center;gap:10px;width:fit-content;max-width:100%;
+  padding:8px 16px 8px 14px;border:1px solid rgba(63,214,255,.34);border-radius:999px;
+  background:rgba(30,160,220,.09);color:#c4f0ff;text-shadow:none;
+  font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;line-height:1.3;white-space:normal;
+}
+.eyebrow::before,.section-label::before,.why-showcase-label::before,.tech-small-label::before,.tech-selector-kicker::before,.tech-panel-intro>span::before{
+  content:"";flex:0 0 8px;width:8px;height:8px;margin:0;border-radius:50%;
+  background:var(--lh-dot-blue);box-shadow:0 0 10px rgba(53,215,255,.95);transform:none
+}
+.why-showcase-label::after,.section-label::after,.eyebrow::after{content:none!important;display:none!important}
+.why-showcase-label{margin-bottom:22px;box-shadow:none}
+.eyebrow{margin-bottom:18px}
+.pricing-top .eyebrow,.section-heading .eyebrow,.tech-main-heading .eyebrow{margin-bottom:14px}
+/* technology section: green dot variant */
+.tech-small-label,.tech-selector-kicker,.tech-panel-intro>span,.tech-main-heading .eyebrow{
+  border-color:rgba(47,240,141,.38);background:rgba(47,240,141,.08);color:#9bf7c9}
+.tech-small-label::before,.tech-selector-kicker::before,.tech-panel-intro>span::before,.tech-main-heading .eyebrow::before{
+  background:var(--lh-dot-green);box-shadow:0 0 10px rgba(47,240,141,.95)}
+.tech-small-label{margin-bottom:12px}
+.tech-selector-kicker{margin-bottom:12px}
+.tech-stack-footer{font-weight:700;color:#a6bacb}
+.tech-live-dot{background:var(--lh-dot-green)!important;box-shadow:0 0 10px rgba(47,240,141,.9)!important}
+
+/* ---------- 5. Home: service cards (icon + specific label instead of "Lighthouse service") ---------- */
+.services .service-card-icon i{font-size:19px;line-height:1}
+.services .service-kicker{display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;
+  color:#8fdcf5;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.services .service-kicker::before{content:"";flex:0 0 7px;width:7px;height:7px;border-radius:50%;background:var(--lh-dot-blue);box-shadow:0 0 9px rgba(53,215,255,.9)}
+.services .service-card-content h3{font-size:clamp(15px,1.25vw,18px);font-weight:700}
+.services .service-card-content>p:not(.service-kicker){font-size:13px;color:#b4c3d2}
+.services .service-card-link{font-size:13.5px;font-weight:700}
+.services-all-link{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border:1px solid rgba(88,207,255,.45);border-radius:999px;
+  background:rgba(10,32,50,.65);color:#eaf8ff;font-size:14px;font-weight:700;transition:.25s}
+.services-all-link i{font-size:12px;transition:transform .25s}
+.services-all-link:hover{border-color:#58cfff;background:rgba(40,170,230,.16);color:#fff}
+.services-all-link:hover i{transform:translateX(4px)}
+.text-link i{font-size:11px;margin-left:6px}
+
+/* ---------- 6. Home: pricing slider (5 packages) ---------- */
+.pricing-category{display:flex;align-items:center;gap:9px;padding:0;border:0;background:none;color:#8fe3ff;font-size:12.5px;font-weight:700;letter-spacing:.12em}
+.pricing-category::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lh-dot-blue);box-shadow:0 0 9px rgba(53,215,255,.9)}
+.pricing-package{display:inline-flex;align-items:center;gap:8px;margin:10px 0 14px;padding:6px 13px;border-radius:999px;
+  border:1px solid rgba(53,215,255,.4);background:rgba(53,215,255,.1);color:#aeeeff;font-size:13px;font-weight:700}
+.pricing-package i{font-size:12px;color:var(--lh-dot-green)}
+.pricing-points{list-style:none;margin:16px 0 20px;padding:0;display:grid;gap:9px}
+.pricing-points li{position:relative;padding-left:20px;color:#d3e1ee;font-size:14px;font-weight:500;line-height:1.5}
+.pricing-points li::before{content:"";position:absolute;left:3px;top:.62em;width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 8px rgba(255,255,255,.55)}
+.price-display strong{font-size:clamp(28px,3.2vw,38px);font-weight:800;letter-spacing:-.02em}
+.price-display small{color:#9fb2c4;font-size:13px;font-weight:600}
+.pricing-footer .slider-controls button i{font-size:13px}
+.pricing-footer>p{font-weight:500}
+
+/* ---------- 7. Selected work ---------- */
+.projects-heading-actions .btn i{font-size:12px}
+
+/* ---------- 8. Team (home + about) — slightly smaller cards, GitHub only ---------- */
+.team-section{padding-top:20px;padding-bottom:80px}
+.team-section.home-team{padding-top:70px;padding-bottom:60px}
+.team-heading{max-width:720px;margin:0 auto 38px;text-align:center}
+.team-heading h2{margin:18px 0 12px;font-size:clamp(34px,4.2vw,48px);letter-spacing:-.04em;line-height:1.1}
+.team-heading>p{max-width:600px;margin:0 auto;color:#aebccb;font-size:14px;line-height:1.8}
+.team-manifesto{margin-top:16px;color:#fff;font-size:14px;font-weight:700}
+.team-manifesto span{color:#35d7ff}
+.team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;max-width:800px;margin:0 auto}
+.team-card{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(25,207,255,.2);border-radius:16px;
+  background:linear-gradient(145deg,rgba(15,32,47,.75),rgba(5,12,20,.92));transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.team-card:hover{transform:translateY(-4px);border-color:rgba(25,207,255,.5);box-shadow:0 18px 50px rgba(0,0,0,.4),0 0 28px rgba(25,207,255,.08)}
+.team-image{position:relative;height:215px;overflow:hidden;background:#071421}
+.team-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:saturate(.8) brightness(.85);transition:transform .6s ease,filter .6s ease}
+.team-card:hover .team-image img{transform:scale(1.04);filter:saturate(1) brightness(.95)}
+.team-image .image-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,6,9,.88),transparent 70%)}
+.member-number{position:absolute;left:18px;bottom:14px;color:#35d7ff;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.team-info{padding:20px 22px 22px}
+.member-role{display:block;color:#35d7ff;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.team-info h3{margin:8px 0 8px;font-size:21px;font-weight:800;letter-spacing:-.025em}
+.team-info>p{max-width:none;color:#aebccb;font-size:13.5px;line-height:1.7}
+.team-skills{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.team-skills span{padding:6px 10px;border:1px solid rgba(25,207,255,.18);border-radius:6px;background:rgba(25,207,255,.05);color:#b4c8d9;font-size:12.5px;font-weight:600}
+.team-socials{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08)}
+.team-socials a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid rgba(25,207,255,.25);border-radius:10px;background:rgba(25,207,255,.06);color:#fff;transition:.25s}
+.team-socials a i{font-size:19px;line-height:1}
+.team-socials a:hover{transform:translateY(-3px);border-color:rgba(25,207,255,.7);background:rgba(25,207,255,.14);box-shadow:0 0 18px rgba(25,207,255,.18)}
+@media(max-width:760px){
+  .team-grid{grid-template-columns:1fr;max-width:420px}
+  .team-image{height:230px}
+}
+
+/* ---------- 9. About: tighter hero ---------- */
+.about-hero{min-height:0!important;padding:72px 20px 34px!important}
+.about-hero p{margin-top:20px}
+.about-hero .hero-scroll{margin-top:24px;font-weight:700}
+.who-section{padding-top:70px!important;padding-bottom:100px!important}
+@media(max-width:700px){.about-hero{padding:56px 18px 26px!important}.who-section{padding-top:52px!important;padding-bottom:70px!important}}
+
+/* ---------- 10. Footer: bigger logo, title and text ---------- */
+.lh-footer{padding-top:42px}
+.lh-footer__asset-logo{width:clamp(58px,5vw,78px);height:auto;max-height:86px}
+.lh-footer__asset-subtitle{width:clamp(170px,18vw,250px);max-height:54px}
+.lh-footer__brand-link{gap:14px;margin-bottom:14px}
+.lh-footer__tagline{font-size:15px;font-weight:800;letter-spacing:.04em;color:#a9bacb;flex-basis:100%}
+.lh-footer__brand{max-width:400px}
+.lh-footer__description{max-width:380px;font-size:14px;line-height:1.75;font-weight:500;color:#9db0c2}
+.lh-footer__heading{font-size:16px;font-weight:800;margin-bottom:14px}
+.lh-footer__links{gap:11px}
+.lh-footer__links a,.lh-footer__contact-link{font-size:14px;font-weight:600;color:#a9bbcc}
+.lh-footer__contact-link{color:#e7f1fa}
+.lh-footer__contact-icon{width:19px;height:19px;flex-basis:19px}
+.lh-footer__social{width:40px;height:40px;color:#e7f1fa;font-size:17px}
+.lh-footer__social i{line-height:1}
+.lh-footer__social:hover{color:#35d7ff}
+.lh-footer__copyright{font-size:14px;font-weight:600}
+@media(max-width:600px){.lh-footer__tagline{font-size:13px;white-space:normal}}
+
+/* ---------- 11. Pricing page: white mini bullets + notes row ---------- */
+.benefit .bullet-dot{flex:0 0 6px;width:6px;height:6px;margin:.62em 3px 0 3px;border-radius:50%;background:#fff;box-shadow:0 0 8px rgba(255,255,255,.5)}
+.benefit{font-size:14px;gap:11px;color:#d0dbe6}
+.pricing-points-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:34px}
+.pricing-point-card{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(10,24,38,.72);
+  color:#eaf2f9;font-size:14px;font-weight:700;line-height:1.45}
+.point-icon{flex:0 0 34px;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;font-size:14px}
+.point-gold{border-color:rgba(255,196,90,.32);background:linear-gradient(135deg,rgba(255,190,80,.1),rgba(10,24,38,.72))}
+.point-gold .point-icon{background:#f3c15c;color:#2a1c00}
+.point-blue{border-color:rgba(70,170,255,.32);background:linear-gradient(135deg,rgba(60,160,255,.12),rgba(10,24,38,.72))}
+.point-blue .point-icon{background:#8cc6ff;color:#06213c}
+.point-green{border-color:rgba(60,230,150,.32);background:linear-gradient(135deg,rgba(47,240,141,.11),rgba(10,24,38,.72))}
+.point-green .point-icon{background:#7ee6b4;color:#04301d}
+@media(max-width:820px){.pricing-points-row{grid-template-columns:1fr}}
+.pricing-note{font-size:14px}
+.card-button i{margin-left:6px}
+
+/* ---------- 12. Small polish ---------- */
+@media(min-width:700px){.why-showcase-heading .why-orange{white-space:nowrap}}
+.pricing-photo{object-fit:cover}
+
+
+/* ---------- Team story + founder profiles ---------- */
+.team-section.home-team{padding-top:76px;padding-bottom:82px}
+.team-story-wrap{max-width:900px;margin:0 auto 38px}
+.team-story-kicker{display:flex;align-items:center;gap:10px;color:#8bdff2;font-size:11px;font-weight:800;letter-spacing:.19em;text-transform:uppercase;margin-bottom:20px}
+.story-kicker-dot{width:7px;height:7px;border-radius:50%;background:#35d7ff;box-shadow:0 0 14px rgba(53,215,255,.8)}
+.team-story-points{list-style:none;margin:0 auto;padding:0;max-width:760px;display:grid;gap:12px}
+.team-story-points li{display:grid;grid-template-columns:42px 1fr;align-items:start;gap:12px;color:#aebccb;font-size:14px;line-height:1.75}
+.story-point{color:#35d7ff;font-size:11px;font-weight:800;letter-spacing:.12em;padding-top:3px}
+.team-story-points strong{color:#edf8ff;font-weight:700}
+.team-heading-new{margin:42px auto 0;max-width:760px}
+.team-heading-new h2{font-size:clamp(34px,4.5vw,50px);margin:0 0 13px}
+.team-heading-new h2 span{color:#35d7ff}
+.team-heading-new>p{max-width:630px}
+.team-people-list{max-width:900px;margin:0 auto;border-top:1px solid rgba(53,215,255,.17)}
+.team-person-row{display:grid;grid-template-columns:minmax(260px,.82fr) minmax(0,1.18fr);gap:42px;align-items:center;padding:28px 8px;border-bottom:1px solid rgba(255,255,255,.09)}
+.team-person-identity{display:flex;align-items:center;gap:20px;min-width:0}
+.team-person-photo{width:112px;height:112px;flex:0 0 112px;border-radius:50%;overflow:hidden;border:1px solid rgba(53,215,255,.5);padding:4px;background:rgba(53,215,255,.07);box-shadow:0 0 28px rgba(53,215,255,.08)}
+.team-person-photo img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center 28%;filter:saturate(.78);transition:transform .45s ease,filter .45s ease}
+.team-person-row:hover .team-person-photo img{transform:scale(1.07);filter:saturate(1)}
+.team-person-name h3{font-size:clamp(17px,2vw,21px);line-height:1.3;margin:0 0 7px;color:#f2f8fc;letter-spacing:-.025em}
+.team-person-name span{color:#35d7ff;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.team-person-speech{margin:0;padding:5px 0 5px 22px;border-left:2px solid rgba(53,215,255,.48);color:#b5c3cf;font-size:14px;line-height:1.9;font-style:normal}
+
+/* ---------- Homepage contact section: same midnight/cyan visual language ---------- */
+.lighthouse-contact{padding-top:90px;padding-bottom:100px;scroll-margin-top:90px}
+.lighthouse-contact .section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:25px;margin-bottom:38px}
+.lighthouse-contact .section-heading h2{font-size:clamp(36px,4.4vw,52px);line-height:1.08;letter-spacing:-.045em;margin:12px 0}
+.lighthouse-contact .section-heading h2 span{color:#35d7ff}
+.lighthouse-contact .eyebrow{color:#72dfff;font-size:11px;font-weight:800;letter-spacing:.17em}
+.lighthouse-contact .section-intro{font-size:14px;color:#aebccb;line-height:1.7;max-width:570px}
+.lighthouse-contact .contact-symbol{color:#35d7ff;text-shadow:0 0 28px rgba(53,215,255,.35);font-size:48px}
+.lighthouse-contact .contact-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr);gap:clamp(28px,5vw,64px);align-items:start}
+.lighthouse-contact .project-form{padding:clamp(20px,3vw,30px);border:1px solid rgba(53,215,255,.2);border-radius:16px;background:linear-gradient(145deg,rgba(12,29,43,.82),rgba(4,12,21,.92));box-shadow:0 18px 55px rgba(0,0,0,.18)}
+.lighthouse-contact .form-heading{color:#35d7ff;border-bottom-color:rgba(255,255,255,.1)}
+.lighthouse-contact .project-form>label,.lighthouse-contact .form-row label,.lighthouse-contact .project-form legend{color:#d1e0eb;font-size:13px}
+.lighthouse-contact .project-form input:not([type=radio]),.lighthouse-contact .project-form textarea,.lighthouse-contact .project-form select{background:rgba(2,9,16,.72);border:1px solid rgba(151,190,211,.19);border-radius:8px;color:#f2f8fc;min-height:45px}
+.lighthouse-contact .project-form input:focus,.lighthouse-contact .project-form textarea:focus,.lighthouse-contact .project-form select:focus{border-color:rgba(53,215,255,.75);box-shadow:0 0 0 3px rgba(53,215,255,.09)}
+.lighthouse-contact .project-form input::placeholder,.lighthouse-contact .project-form textarea::placeholder{color:#738696}
+.lighthouse-contact .budget-options span{border-color:rgba(151,190,211,.2);border-radius:7px;color:#aebccb;transition:background .25s,border-color .25s,color .25s}
+.lighthouse-contact .budget-options input:checked+span{border-color:rgba(53,215,255,.7);background:rgba(53,215,255,.12);color:#eafaff}
+.lighthouse-contact .form-buttons{gap:12px;margin-top:4px}
+.lighthouse-contact .form-buttons .btn{min-height:44px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer}
+.lighthouse-contact .form-buttons .btn-primary{background:linear-gradient(120deg,#13a9ce,#35d7ff);border:1px solid rgba(53,215,255,.55);color:#03121b;font-weight:800}
+.lighthouse-contact .whatsapp-button{border:1px solid rgba(53,215,255,.3);background:rgba(53,215,255,.06);color:#bcefff}
+.lighthouse-contact .form-note{color:#8298a8;line-height:1.6}
+.lighthouse-contact .contact-info{padding:12px 0}
+.lighthouse-contact .contact-info h3{font-size:clamp(29px,3vw,38px);line-height:1.13;letter-spacing:-.04em;color:#f2f8fc}
+.lighthouse-contact .contact-info h3 span{color:#35d7ff}
+.lighthouse-contact .contact-description{color:#aebccb;font-size:14px;line-height:1.8;margin-bottom:26px}
+.lighthouse-contact .contact-item{grid-template-columns:82px minmax(0,1fr) 15px;gap:8px;border-top:1px solid rgba(255,255,255,.1);padding:17px 0;color:#e5f2f8;text-decoration:none}
+.lighthouse-contact .contact-item span{color:#7f9aaa;font-size:10px;font-weight:800;letter-spacing:.15em}
+.lighthouse-contact .contact-item strong{font-size:13px;font-weight:600;overflow-wrap:anywhere}
+.lighthouse-contact .contact-item i{color:#35d7ff}
+.lighthouse-contact .social-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.lighthouse-contact .social-links a{border:1px solid rgba(53,215,255,.2);border-radius:7px;background:rgba(53,215,255,.045);color:#b6d2df;padding:9px 12px;text-decoration:none;transition:all .25s}
+.lighthouse-contact .social-links a:hover{border-color:rgba(53,215,255,.65);color:#fff;background:rgba(53,215,255,.1);transform:translateY(-2px)}
+@media(max-width:760px){
+ .team-section.home-team{padding-top:55px;padding-bottom:60px}
+ .team-story-wrap{margin-bottom:28px}
+ .team-story-points li{font-size:13px;grid-template-columns:34px 1fr;gap:8px}
+ .team-heading-new{margin-top:32px}
+ .team-person-row{grid-template-columns:1fr;gap:18px;padding:24px 4px}
+ .team-person-photo{width:88px;height:88px;flex-basis:88px}
+ .team-person-speech{font-size:13px;margin-left:4px}
+ .lighthouse-contact{padding-top:65px;padding-bottom:70px}
+ .lighthouse-contact .section-heading{align-items:flex-start}
+ .lighthouse-contact .contact-grid{grid-template-columns:1fr;gap:28px}
+ .lighthouse-contact .contact-info{padding:5px 0}
+}
+@media(max-width:520px){
+ .team-person-identity{gap:15px}
+ .team-person-photo{width:78px;height:78px;flex-basis:78px}
+ .team-person-name h3{font-size:17px}
+ .lighthouse-contact .section-heading{gap:10px}
+ .lighthouse-contact .contact-symbol{font-size:34px}
+ .lighthouse-contact .form-row{grid-template-columns:1fr;gap:0}
+ .lighthouse-contact .budget-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .lighthouse-contact .form-buttons{flex-direction:column;align-items:stretch}
+ .lighthouse-contact .form-buttons .btn{width:100%}
+ .lighthouse-contact .contact-item{grid-template-columns:68px minmax(0,1fr) 12px}
+}
+
+
+/* ---------- Homepage: founder story layout + direct contact ---------- */
+.team-story-wrap{max-width:900px;margin:0 auto 38px;text-align:center}
+.team-story-kicker{justify-content:center;margin-bottom:20px}
+.team-heading-new{margin:0 auto;max-width:760px}
+.team-people-list{max-width:900px;margin:0 auto;border-top:0}
+.team-person-row{
+  grid-template-columns:minmax(180px,.58fr) minmax(0,1fr);
+  gap:38px;align-items:center;padding:28px 8px;
+  border-bottom:1px solid rgba(255,255,255,.09)
+}
+.team-person-identity{gap:22px}
+.team-person-photo{width:112px;height:112px;flex-basis:112px}
+.team-person-speech{max-width:560px;min-height:58px;display:flex;align-items:center}
+.team-person-row-reverse{grid-template-columns:minmax(0,1fr) minmax(180px,.58fr)}
+.team-person-row-reverse .team-person-identity{grid-column:2;grid-row:1;flex-direction:row-reverse;justify-content:flex-start}
+.team-person-row-reverse .team-person-name{text-align:right}
+.team-person-row-reverse .team-person-speech{grid-column:1;grid-row:1;justify-self:end;border-left:0;border-right:2px solid rgba(53,215,255,.48);padding:5px 22px 5px 0;text-align:right}
+
+.lighthouse-contact{padding-top:76px;padding-bottom:86px}
+.contact-direct{
+  max-width:900px;margin:0 auto;padding:clamp(28px,5vw,56px);
+  display:grid;grid-template-columns:.55fr 1.45fr;gap:clamp(28px,5vw,64px);
+  align-items:center;border:1px solid rgba(53,215,255,.2);border-radius:18px;
+  background:linear-gradient(145deg,rgba(12,29,43,.72),rgba(4,12,21,.88))
+}
+.contact-direct-brand{display:flex;align-items:center;justify-content:center}
+.contact-direct-brand a{display:inline-flex;align-items:center;justify-content:center}
+.contact-direct-brand img{display:block;width:calc(clamp(58px,5vw,78px) + 1px);height:auto;max-height:87px;object-fit:contain}
+.contact-direct-content .eyebrow{margin-bottom:15px}
+.contact-direct-content h2{font-size:clamp(34px,4.4vw,50px);line-height:1.08;letter-spacing:-.045em;margin:0 0 14px;color:#f2f8fc}
+.contact-direct-content h2 span{color:#35d7ff}
+.contact-direct-content .contact-description{font-size:14px;color:#aebccb;line-height:1.8;margin:0 0 24px}
+.contact-direct-details{display:grid;gap:0}
+.contact-direct-details .contact-item{
+  display:grid;grid-template-columns:82px minmax(0,1fr) 15px;gap:8px;
+  align-items:center;padding:15px 0;border-top:1px solid rgba(255,255,255,.1);
+  color:#e5f2f8;text-decoration:none
+}
+.contact-direct-details .contact-item span{color:#7f9aaa;font-size:10px;font-weight:800;letter-spacing:.15em}
+.contact-direct-details .contact-item strong{font-size:13px;font-weight:600;overflow-wrap:anywhere}
+.contact-direct-details .contact-item i{color:#35d7ff}
+.contact-direct .social-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.contact-direct .social-links a{border:1px solid rgba(53,215,255,.2);border-radius:7px;background:rgba(53,215,255,.045);color:#b6d2df;padding:9px 12px;text-decoration:none;transition:all .25s;font-size:13px;font-weight:700}
+.contact-direct .social-links a:hover{border-color:rgba(53,215,255,.65);color:#fff;background:rgba(53,215,255,.1);transform:translateY(-2px)}
+@media(max-width:760px){
+  .team-person-row,.team-person-row-reverse{grid-template-columns:1fr;gap:17px;padding:24px 4px}
+  .team-person-row-reverse .team-person-identity{grid-column:1;grid-row:1;flex-direction:row}
+  .team-person-row-reverse .team-person-name{text-align:left}
+  .team-person-row-reverse .team-person-speech{grid-column:1;grid-row:2;justify-self:stretch;border-left:2px solid rgba(53,215,255,.48);border-right:0;padding:5px 0 5px 18px;text-align:left}
+  .team-person-speech{margin-left:4px}
+  .contact-direct{grid-template-columns:1fr;gap:22px;padding:28px 22px}
+  .contact-direct-brand{justify-content:flex-start}
+  .contact-direct-brand img{width:calc(clamp(58px,5vw,78px) + 1px)}
+}
+@media(max-width:520px){
+  .team-person-photo{width:78px;height:78px;flex-basis:78px}
+  .team-person-identity{gap:15px}
+  .contact-direct-content h2{font-size:34px}
+  .contact-direct-details .contact-item{grid-template-columns:68px minmax(0,1fr) 12px}
+}
+
+
+/* ======================================================================
+   ROUND: homepage team pill, bold-italic quotes, icon socials, about image
+   ====================================================================== */
+
+/* "HOW WE BECAME ONE" -> same rounded green-dot pill as "TECHNOLOGY SKILLS" */
+.team-story-kicker{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  width:fit-content;max-width:100%;margin:0 auto 20px;
+  padding:8px 16px 8px 14px;border:1px solid rgba(47,240,141,.38);border-radius:999px;
+  background:rgba(47,240,141,.08);color:#9bf7c9;
+  font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;line-height:1.3;
+}
+.team-story-kicker .story-kicker-dot{
+  flex:0 0 8px;width:8px;height:8px;border-radius:50%;
+  background:var(--lh-dot-green);box-shadow:0 0 10px rgba(47,240,141,.95);
+}
+
+/* Founder quotes: bold + italic */
+.team-person-speech{font-weight:700;font-style:italic}
+
+/* Contact section socials: icon-only rounded buttons (same look as footer icons) */
+.lighthouse-contact .social-links,
+.contact-direct .social-links{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:24px}
+.lighthouse-contact .social-links a,
+.contact-direct .social-links a{
+  width:44px;height:44px;padding:0;display:grid;place-items:center;
+  border:1px solid rgba(120,205,240,.22);border-radius:12px;
+  background:rgba(255,255,255,.045);color:#e7f1fa;font-size:18px;line-height:1;
+  text-decoration:none;transition:transform .25s,border-color .25s,background .25s,color .25s;
+}
+.lighthouse-contact .social-links a i,
+.contact-direct .social-links a i{line-height:1}
+.lighthouse-contact .social-links a:hover,
+.contact-direct .social-links a:hover{
+  transform:translateY(-4px);border-color:#42cfff;background:rgba(30,180,240,.12);color:#35d7ff;
+}
+
+/* About page: static picture card (replaces the animated lighthouse artwork) */
+.about-photo-card{
+  position:relative;min-height:510px;overflow:hidden;display:block;
+  border:1px solid rgba(64,203,255,.4);border-radius:24px;background:#02070d;
+  box-shadow:inset 0 0 60px rgba(0,142,255,.1),0 24px 80px rgba(0,0,0,.28);
+}
+.about-photo-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+@media(max-width:760px){.about-photo-card{min-height:390px}}

@@ -1,0 +1,14 @@
+/* Utility-only Tailwind build: avoids preflight resets that could alter the existing page design. */
+@tailwind utilities;
+
+
+/* Cross-browser typography consistency (Chromium, Firefox, Safari). */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

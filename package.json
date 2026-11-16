@@ -1,0 +1,12 @@
+{
+  "name": "lighthouse-lab-website",
+  "version": "2.1.1",
+  "private": true,
+  "scripts": {
+    "dev": "npx --yes serve .",
+    "build:tailwind": "tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.generated.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
